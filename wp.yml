@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  wordpress:
+      image: wordpress
+      restart: always
+      container_name: wp
+      ports:
+        - 8080:80
+      environment:
+        WORDPRESS_DB_HOST: db
+        WORDPRESS_DB_USER: vansmark
+        WORDPRESS_DB_PASSWORD: root
+        WORDPRESS_DB_NAME: vansmark
+      volumes:
+        - ./:/var/www/html/
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: db
+    environment:
+      MYSQL_DATABASE: vansmark
+      MYSQL_USER: vansmark
+      MYSQL_PASSWORD: root
+      MYSQL_RANDOM_ROOT_PASSWORD: '0'
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+   
